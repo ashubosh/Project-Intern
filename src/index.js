@@ -4,7 +4,7 @@ const route = require ('./routes/route.js')
 const { default : mongoose } = require ('mongoose')
 const app = express ()
 app.use(bodyParser.json())
-mongoose.connect( "mongodb+srv://Ashutosh1504:jcv5sjFrfdkxeEyL@cluster0.aqhdgzq.mongodb.net/group64Database?retryWrites=true&w=majority%22"
+mongoose.connect( "mongodb+srv://manaskumar:iFVJhjYrsH7iars8@cluster0.s4pqkzd.mongodb.net/group64Database?retryWrites=true&w=majority"
 ,{
     useNewUrlParser: true
 })

@@ -73,7 +73,40 @@ const createCollege = async function (req, res) {
 
     }
 }
+//******************Get college**************************************/
+
+const getCollege = async (req, res)=>{
+  try {
+
+    let filter = req.query
+    
+    
+    if (!Object.keys(filter).length) return res.status(400).send({ status: true, msg: "query should be present" });
+
+    let checkCollegeName = await collegeModel.findOne({ name: filter.collegeName, isDeleted: false }) /*Check College Name From DB*/
+    if (!checkCollegeName) return res.status(404).send({ status: true, msg: "No such college Name found", });
+
+    let collegeId = checkCollegeName._id /*Get CollegeID from CheckCollegeName*/
+    let getAllInternData = await internModel.find({ collegeId: collegeId, isDeleted: false }).select({ name: 1, email: 1, mobile: 1 })
+    if (!getAllInternData.length) return res.status(404).send({ status: false, msg: "No intern Apply for This College", });
+
+    //assign value
+    let {name,fullName,logoLink}=checkCollegeName
+
+    //call value
+    let collegeData = {
+      name: name,
+      fullName: fullName,
+      logoLink: logoLink,
+      interns: getAllInternData
+    }
+
+    res.status(200).send({ status: true,Collegedetails:{ data: collegeData }});
+  } catch (err) {
+    res.status(500).send({ status: false, msg: err.message });
+  }
+};
 
 
 
-module.exports.createCollege = createCollege
+module.exports = {createCollege,getCollege};

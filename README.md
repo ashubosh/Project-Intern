@@ -78,10 +78,7 @@ College details
     "logoLink": "some public s3 link for a college logo",
     "interns": [
       {
-        "_id": "123a47301a53ecaeea02be59",
-        "name": "Jane Doe",
-        "email": "jane.doe@miet.ac.in",
-        "mobile": "8888888888"
+         "mobile": "8888888888"
       },
       {
         "_id": "45692c0e1a53ecaeea02b1ac",
