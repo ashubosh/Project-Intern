@@ -92,7 +92,6 @@ const createIntern = async function(req,res){
 
         requestBody.collegeId = collegeId
 
-        delete requestBody.collegeName
 
         const newIntern = await internModel.create(requestBody)
 
