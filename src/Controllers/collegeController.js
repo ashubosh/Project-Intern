@@ -109,7 +109,7 @@ const getCollege = async (req, res)=>{
       interns: getAllInternData
     }
 
-    res.status(200).send({ status: true,Collegedetails:{ data: collegeData }});
+    res.status(200).send({ status: true, data: collegeData });
   } catch (err) {
     res.status(500).send({ status: false, message: err.message });
   }

@@ -93,11 +93,17 @@ const createIntern = async function(req,res){
         }
 
         const collegeId = collegeByCollegeName._id
+        let obj ={
+            name:requestBody.name,
+            email:requestBody.email,
+            mobile:requestBody.mobile,
+            collegeId:collegeId
 
-        requestBody.collegeId = collegeId
+
+        }
 
 
-        const newIntern = await internModel.create(requestBody)
+        const newIntern = await internModel.create(obj)
 
         res
         .status(201)
