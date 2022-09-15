@@ -13,9 +13,6 @@ const isValidRequestBody = function (reqBody) {
     return Object.keys(reqBody).length > 0
 }
 
-const isValidObjectId = function (objectId) {
-    return mongoose.Schema.Types.isValid(objectId)
-}
 
 
 //***************************CREATE COLLEGE**********************************/
@@ -89,10 +86,10 @@ const getCollege = async (req, res)=>{
     let filter = req.query
     
     
-    if (!Object.keys(filter).length) return res.status(400).send({ status: true,message: "query should be present" });
+    if (!Object.keys(filter).length) return res.status(400).send({ status: false,message: "query should be present" });
 
     let checkCollegeName = await collegeModel.findOne({ name: filter.collegeName, isDeleted: false }) /*Check College Name From DB*/
-    if (!checkCollegeName) return res.status(404).send({ status: true, message: "No such college Name found", });
+    if (!checkCollegeName) return res.status(404).send({ status: false, message: "No such college Name found", });
 
     let collegeId = checkCollegeName._id /*Get CollegeID from CheckCollegeName*/
     let getAllInternData = await internModel.find({ collegeId: collegeId, isDeleted: false }).select({ name: 1, email: 1, mobile: 1 })
